@@ -16,7 +16,7 @@ class Question {
     var interval: Interval
     
     var text : String {
-        return "<center>Qual é a <b>\(interval.name)</b> de <b>\(interval.startNote)</b></center>"
+        return "<center>Qual é a <b>\(interval.name)</b> de <b>\(interval.startNote)</b>?</center>"
     }
     
     init(interval: Interval, optionA: Note, optionB: Note, optionC: Note, optionD: Note) {

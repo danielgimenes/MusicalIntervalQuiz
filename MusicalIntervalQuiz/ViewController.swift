@@ -12,15 +12,17 @@ class ViewController: UIViewController {
     
     @IBOutlet var questionTextLabel: UILabel?
     @IBOutlet var scoreValueLabel: UILabel?
+    @IBOutlet var questionCountLabel: UILabel?
     @IBOutlet var aButton: UIButton?
     @IBOutlet var bButton: UIButton?
     @IBOutlet var cButton: UIButton?
     @IBOutlet var dButton: UIButton?
     
-    var score: Int = 0
-    var currentQuestionIndex: Int = 0
+    var score: Int!
+    var currentQuestionIndex: Int!
     
     let RIGHT_ANSWER_SCORE_POINTS = 1
+    let NUM_OF_QUESTIONS_PER_GAME = 10
     
     let questions = [
         Question(
@@ -63,8 +65,13 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        restartGame()
+    }
+    
+    func restartGame() {
         score = 0
         currentQuestionIndex = 0
+        updateScoreLabel()
         loadNextQuestion()
     }
     
@@ -73,10 +80,23 @@ class ViewController: UIViewController {
     }
     
     func loadNextQuestion() {
-        loadQuestion(
-            questions[currentQuestionIndex++ % questions.count]
-        )
-        buttonsActivated = true
+        if (currentQuestionIndex == NUM_OF_QUESTIONS_PER_GAME) {
+            let alert = UIAlertController(title: "Muito bom!", message: "Você acertou \(score) de \(NUM_OF_QUESTIONS_PER_GAME)", preferredStyle: .Alert)
+            
+            let action = UIAlertAction(title: "Ok", style: .Default, handler: { a in
+                self.buttonsActivated = false
+                self.restartGame()
+            })
+            
+            alert.addAction(action)
+            presentViewController(alert, animated: true, completion: nil)
+        } else {
+            questionCountLabel?.text = "\(currentQuestionIndex + 1) / \(NUM_OF_QUESTIONS_PER_GAME)"
+            loadQuestion(
+                questions[currentQuestionIndex!++ % questions.count]
+            )
+            buttonsActivated = true
+        }
     }
     
     @IBAction func aButtonClicked(sender: UIButton) {
@@ -123,7 +143,7 @@ class ViewController: UIViewController {
     func answer(selectedAnswer: Note, selectedAnswerButton: UIButton) {
         buttonsActivated = false
         if (selectedAnswer == currentQuestion.interval.endNote) {
-            score += RIGHT_ANSWER_SCORE_POINTS
+            score! += RIGHT_ANSWER_SCORE_POINTS
             updateScoreLabel()
         } else {
             // animate red

@@ -19,16 +19,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="yQa-Gl-F8c">
-                                <rect key="frame" x="475.5" y="40" width="84.5" height="20.5"/>
+                                <rect key="frame" x="476" y="40" width="85" height="21"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XI5-wz-2fL">
-                                        <rect key="frame" x="0.0" y="0.0" width="53.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="54" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPS-TE-taT">
-                                        <rect key="frame" x="53.5" y="0.0" width="31" height="20.5"/>
+                                        <rect key="frame" x="54" y="0.0" width="31" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="8Sa-EY-zCW">
+                                <rect key="frame" x="40" y="40" width="40" height="21"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="1 / 10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tye-L2-std">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -117,6 +128,7 @@
                         <outlet property="bButton" destination="fgx-ha-X40" id="BY2-Ie-e4Z"/>
                         <outlet property="cButton" destination="XSt-ma-CCg" id="wgg-mk-yDL"/>
                         <outlet property="dButton" destination="Qat-aY-wKh" id="4AP-0o-L90"/>
+                        <outlet property="questionCountLabel" destination="tye-L2-std" id="qsK-lM-zCT"/>
                         <outlet property="questionTextLabel" destination="aky-u2-VUK" id="Gvb-4Z-HWu"/>
                         <outlet property="scoreValueLabel" destination="rPS-TE-taT" id="kQW-AY-MVf"/>
                     </connections>
