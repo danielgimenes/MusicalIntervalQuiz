@@ -12,7 +12,11 @@ class Interval {
     var endNote : Note
     
     init(startNote : Note, endNote : Note) {
-        self.halfSteps = endNote.halfSteps - startNote.halfSteps
+        if (startNote.halfSteps > endNote.halfSteps) {
+            self.halfSteps = 11 - startNote.halfSteps + endNote.halfSteps
+        } else {
+            self.halfSteps = endNote.halfSteps - startNote.halfSteps
+        }
         self.startNote = startNote
         self.endNote = endNote
     }

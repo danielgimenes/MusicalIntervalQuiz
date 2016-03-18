@@ -19,9 +19,8 @@ class ViewController: UIViewController {
     
     var score: Int = 0
     var currentQuestionIndex: Int = 0
-    var currentQuestion: Question? = nil
     
-    let RIGHT_ANSWER_SCORE_POINTS = 10
+    let RIGHT_ANSWER_SCORE_POINTS = 1
     
     let questions = [
         Question(
@@ -55,7 +54,13 @@ class ViewController: UIViewController {
             optionD: Note(noteName: .E, accidental: .NATURAL)
         )
     ]
-
+    
+    var currentQuestion: Question!
+    
+    var correctAnswerButton: UIButton!
+    
+    var buttonsActivated = false
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         score = 0
@@ -71,39 +76,88 @@ class ViewController: UIViewController {
         loadQuestion(
             questions[currentQuestionIndex++ % questions.count]
         )
+        buttonsActivated = true
     }
     
     @IBAction func aButtonClicked(sender: UIButton) {
-        answer((currentQuestion?.optionA)!)
+        guard buttonsActivated else { return }
+        answer(currentQuestion.optionA, selectedAnswerButton: sender)
     }
     
     @IBAction func bButtonClicked(sender: UIButton) {
-        answer((currentQuestion?.optionB)!)
+        guard buttonsActivated else { return }
+        answer(currentQuestion.optionB, selectedAnswerButton: sender)
     }
     
     @IBAction func cButtonClicked(sender: UIButton) {
-        answer((currentQuestion?.optionC)!)
+        guard buttonsActivated else { return }
+        answer(currentQuestion.optionC, selectedAnswerButton: sender)
     }
     
     @IBAction func dButtonClicked(sender: UIButton) {
-        answer((currentQuestion?.optionD)!)
+        guard buttonsActivated else { return }
+        answer(currentQuestion.optionD, selectedAnswerButton: sender)
     }
     
     func loadQuestion(question: Question) {
         currentQuestion = question
         questionTextLabel?.setHTMLFromString(question.text)
         aButton?.setTitle(String(question.optionA), forState: UIControlState.Normal)
+        if (question.optionA == question.interval.endNote) {
+            correctAnswerButton = aButton!
+        }
         bButton?.setTitle(String(question.optionB), forState: UIControlState.Normal)
+        if (question.optionB == question.interval.endNote) {
+            correctAnswerButton = bButton!
+        }
         cButton?.setTitle(String(question.optionC), forState: UIControlState.Normal)
+        if (question.optionC == question.interval.endNote) {
+            correctAnswerButton = cButton!
+        }
         dButton?.setTitle(String(question.optionD), forState: UIControlState.Normal)
+        if (question.optionD == question.interval.endNote) {
+            correctAnswerButton = dButton!
+        }
     }
     
-    func answer(selectedAnswer: Note) {
-        if (selectedAnswer == (currentQuestion?.interval.endNote)!) {
+    func answer(selectedAnswer: Note, selectedAnswerButton: UIButton) {
+        buttonsActivated = false
+        if (selectedAnswer == currentQuestion.interval.endNote) {
             score += RIGHT_ANSWER_SCORE_POINTS
             updateScoreLabel()
+        } else {
+            // animate red
+            selectedAnswerButton.alpha = 0.0
+            selectedAnswerButton.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            UIView.animateWithDuration(
+                0.7,
+                delay: 0.0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations : {
+                    selectedAnswerButton.alpha = 1.0
+                },
+                completion : { finished in
+                    selectedAnswerButton.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+                }
+            )
         }
-        loadNextQuestion()
+        // animate green
+        correctAnswerButton.alpha = 0.0
+        self.correctAnswerButton.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
+        UIView.animateWithDuration(
+            0.7,
+            delay: 0.0,
+            options: UIViewAnimationOptions.CurveEaseInOut,
+            animations : {
+                self.correctAnswerButton.alpha = 1.0
+            },
+            completion : { finished in
+                self.correctAnswerButton.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+                self.loadNextQuestion()
+            }
+        )
+        
+        //on animation end,
     }
 
     override func didReceiveMemoryWarning() {
