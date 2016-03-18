@@ -25,28 +25,34 @@ class ViewController: UIViewController {
     
     let questions = [
         Question(
-            text: "<center>Qual é a <b>4J</b> de <b>E</b>?<center>",
-            optionA: "C",
-            optionB: "D#",
-            optionC: "A",
-            optionD: "Bb",
-            correctOption: Question.Option.C
+            interval: Interval(
+                startNote: Note(noteName: .E, accidental: .NATURAL),
+                endNote: Note(noteName: .A, accidental: .NATURAL)
+            ),
+            optionA: Note(noteName: .C, accidental: .NATURAL),
+            optionB: Note(noteName: .D, accidental: .SHARP),
+            optionC: Note(noteName: .A, accidental: .NATURAL),
+            optionD: Note(noteName: .B, accidental: .FLAT)
         ),
         Question(
-            text: "<center>Qual é a <b>3M</b> de <b>C</b>?<center>",
-            optionA: "G",
-            optionB: "B",
-            optionC: "Ab",
-            optionD: "E",
-            correctOption: Question.Option.D
+            interval: Interval(
+                startNote: Note(noteName: .C, accidental: .NATURAL),
+                endNote: Note(noteName: .E, accidental: .NATURAL)
+            ),
+            optionA: Note(noteName: .G, accidental: .NATURAL),
+            optionB: Note(noteName: .B, accidental: .NATURAL),
+            optionC: Note(noteName: .A, accidental: .FLAT),
+            optionD: Note(noteName: .E, accidental: .NATURAL)
         ),
         Question(
-            text: "<center>Qual é a <b>6m</b> de <b>F</b>?<center>",
-            optionA: "Db",
-            optionB: "D",
-            optionC: "C",
-            optionD: "E",
-            correctOption: Question.Option.A
+            interval: Interval(
+                startNote: Note(noteName: .F, accidental: .NATURAL),
+                endNote: Note(noteName: .D, accidental: .FLAT)
+            ),
+            optionA: Note(noteName: .D, accidental: .FLAT),
+            optionB: Note(noteName: .D, accidental: .NATURAL),
+            optionC: Note(noteName: .C, accidental: .NATURAL),
+            optionD: Note(noteName: .E, accidental: .NATURAL)
         )
     ]
 
@@ -68,32 +74,32 @@ class ViewController: UIViewController {
     }
     
     @IBAction func aButtonClicked(sender: UIButton) {
-        answer(Question.Option.A)
+        answer((currentQuestion?.optionA)!)
     }
     
     @IBAction func bButtonClicked(sender: UIButton) {
-        answer(Question.Option.B)
+        answer((currentQuestion?.optionB)!)
     }
     
     @IBAction func cButtonClicked(sender: UIButton) {
-        answer(Question.Option.C)
+        answer((currentQuestion?.optionC)!)
     }
     
     @IBAction func dButtonClicked(sender: UIButton) {
-        answer(Question.Option.D)
+        answer((currentQuestion?.optionD)!)
     }
     
     func loadQuestion(question: Question) {
         currentQuestion = question
         questionTextLabel?.setHTMLFromString(question.text)
-        aButton?.setTitle(question.optionA, forState: UIControlState.Normal)
-        bButton?.setTitle(question.optionB, forState: UIControlState.Normal)
-        cButton?.setTitle(question.optionC, forState: UIControlState.Normal)
-        dButton?.setTitle(question.optionD, forState: UIControlState.Normal)
+        aButton?.setTitle(String(question.optionA), forState: UIControlState.Normal)
+        bButton?.setTitle(String(question.optionB), forState: UIControlState.Normal)
+        cButton?.setTitle(String(question.optionC), forState: UIControlState.Normal)
+        dButton?.setTitle(String(question.optionD), forState: UIControlState.Normal)
     }
     
-    func answer(option: Question.Option) {
-        if (option == currentQuestion?.correctOption) {
+    func answer(selectedAnswer: Note) {
+        if (selectedAnswer == (currentQuestion?.interval.endNote)!) {
             score += RIGHT_ANSWER_SCORE_POINTS
             updateScoreLabel()
         }

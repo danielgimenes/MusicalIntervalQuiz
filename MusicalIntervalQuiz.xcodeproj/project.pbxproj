@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		657D2FB81C9C8601006F3AF8 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D2FB71C9C8601006F3AF8 /* Note.swift */; };
+		657D2FBA1C9C8EE8006F3AF8 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D2FB91C9C8EE8006F3AF8 /* Interval.swift */; };
 		65D690661C9098E9007C2235 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D690651C9098E9007C2235 /* AppDelegate.swift */; };
 		65D690681C9098E9007C2235 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D690671C9098E9007C2235 /* ViewController.swift */; };
 		65D6906B1C9098E9007C2235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D690691C9098E9007C2235 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		657D2FB71C9C8601006F3AF8 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		657D2FB91C9C8EE8006F3AF8 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		65D690621C9098E9007C2235 /* MusicalIntervalQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalIntervalQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D690651C9098E9007C2235 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D690671C9098E9007C2235 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +43,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		657D2FB61C9C845E006F3AF8 /* GameScreen */ = {
+			isa = PBXGroup;
+			children = (
+				65D690671C9098E9007C2235 /* ViewController.swift */,
+				65D690791C90BFF9007C2235 /* Question.swift */,
+				657D2FB71C9C8601006F3AF8 /* Note.swift */,
+				657D2FB91C9C8EE8006F3AF8 /* Interval.swift */,
+			);
+			name = GameScreen;
+			sourceTree = "<group>";
+		};
 		65D690591C9098E9007C2235 = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +73,13 @@
 		65D690641C9098E9007C2235 /* MusicalIntervalQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				657D2FB61C9C845E006F3AF8 /* GameScreen */,
 				65D690651C9098E9007C2235 /* AppDelegate.swift */,
-				65D690671C9098E9007C2235 /* ViewController.swift */,
 				65D690691C9098E9007C2235 /* Main.storyboard */,
 				65D6906C1C9098E9007C2235 /* Assets.xcassets */,
 				65D6906E1C9098E9007C2235 /* LaunchScreen.storyboard */,
 				65D690711C9098E9007C2235 /* Info.plist */,
 				65D690771C90B674007C2235 /* UILabelExtension.swift */,
-				65D690791C90BFF9007C2235 /* Question.swift */,
 			);
 			path = MusicalIntervalQuiz;
 			sourceTree = "<group>";
@@ -142,7 +156,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657D2FB81C9C8601006F3AF8 /* Note.swift in Sources */,
 				65D690681C9098E9007C2235 /* ViewController.swift in Sources */,
+				657D2FBA1C9C8EE8006F3AF8 /* Interval.swift in Sources */,
 				65D6907A1C90BFF9007C2235 /* Question.swift in Sources */,
 				65D690781C90B674007C2235 /* UILabelExtension.swift in Sources */,
 				65D690661C9098E9007C2235 /* AppDelegate.swift in Sources */,
